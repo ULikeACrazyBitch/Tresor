@@ -1,0 +1,320 @@
+<html>
+<body>
+    <style>
+        input[type=button] {
+            width: 80px;
+        }
+
+        input[type=text] {
+            width: 150px;
+        }
+    </style>
+    <div style="width:90%;margin:20px auto;">
+        <table border="1" cellpadding="0" cellspacing="0" style="text-align:center;width:100%;">
+            <tr>
+                <td colspan="2"> <input type="button" value="全部清除" onclick="ClearAll();" /></td>
+                <td colspan="2"><input type="button" value="粘贴输入" onclick="SetValue();" /></td>
+                <td colspan="6"><input type="text" value="" style="width:100%" id="RValue" onblur="CalcValue(this);" /></td>
+            </tr>
+            <tr>
+                <td> 01</td>
+                <td> <input type="text" value="" id="1" /></td>
+                <td> 03</td>
+                <td> <input type="text" value="" id="3" /></td>
+                <td> 05</td>
+                <td> <input type="text" value="" id="5" /></td>
+                <td> 07</td>
+                <td> <input type="text" value="" id="7" /></td>
+                <td> 09</td>
+                <td> <input type="text" value="" id="9" /></td>
+
+            </tr>
+            <tr>
+                <td> 02</td>
+                <td> <input type="text" value="" id="2" /></td>
+                <td> 04</td>
+                <td> <input type="text" value="" id="4" /></td>
+                <td> 06</td>
+                <td> <input type="text" value="" id="6" /></td>
+                <td> 08</td>
+                <td> <input type="text" value="" id="8" /></td>
+                <td> 10</td>
+                <td> <input type="text" value="" id="10" /></td>
+            </tr>
+            <!--//计算开始-->
+            <tr>
+                <td style="width:200px;"> 01-02</td>
+                <td> <input type="text" value="" id="12" /></td>
+                <td> 02-03</td>
+                <td> <input type="text" value="" id="23" /></td>
+                <td> 03-04</td>
+                <td> <input type="text" value="" id="34" /></td>
+                <td> 04-05</td>
+                <td> <input type="text" value="" id="45" /></td>
+                <td> 05-06</td>
+                <td> <input type="text" value="" id="56" /></td>
+            </tr>
+            <tr>
+                <td> <input type="button" onclick="ClearSingle('1_2');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="1_2" /></td>
+                <td> <input type="button" onclick="ClearSingle('2_3');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="2_3" /></td>
+                <td> <input type="button" onclick="ClearSingle('3_4');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="3_4" /></td>
+                <td> <input type="button" onclick="ClearSingle('4_5');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="4_5" /></td>
+                <td> <input type="button" onclick="ClearSingle('5_6');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="5_6" /></td>
+            </tr>
+            <tr>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="1,2" /></td>
+                <td> <input type="text" value="" id="1__2" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="2,3" /></td>
+                <td> <input type="text" value="" id="2__3" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="3,4" /></td>
+                <td> <input type="text" value="" id="3__4" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="4,5" /></td>
+                <td> <input type="text" value="" id="4__5" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="5,6" /></td>
+                <td> <input type="text" value="" id="5__6" /></td>
+            </tr>
+
+            <tr>
+                <td> 06-07</td>
+                <td> <input type="text" value="" id="67" /></td>
+                <td> 07-08</td>
+                <td> <input type="text" value="" id="78" /></td>
+                <td> 08-09</td>
+                <td> <input type="text" value="" id="89" /></td>
+                <td> 09-10</td>
+                <td> <input type="text" value="" id="910" /></td>
+                <td colspan="2">  </td>
+            </tr>
+            <tr>
+                <td> <input type="button" onclick="ClearSingle('6_7');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="6_7" /></td>
+                <td> <input type="button" onclick="ClearSingle('7_8');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="7_8" /></td>
+                <td> <input type="button" onclick="ClearSingle('8_9');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="8_9" /></td>
+                <td> <input type="button" onclick="ClearSingle('9_10');" value="清除" /></td>
+                <td> <input type="text" value="" onblur="ConvertValue(this)" id="9_10" /></td>
+                <td colspan="2"> </td>
+            </tr>
+            <tr>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="6,7" /></td>
+                <td> <input type="text" value="" id="6__7" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="7,8" /></td>
+                <td> <input type="text" value="" id="7__8" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="8,9" /></td>
+                <td> <input type="text" value="" id="8__9" /></td>
+                <td> <input type="button" onclick="CalcSingle(this);" value="计算" data="9,10" /></td>
+                <td> <input type="text" value="" id="9__10" /></td>
+                <td colspan="2"> </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function ClearAll() {
+        var texts = document.getElementsByTagName("input");
+        for (i = 0; i < texts.length; i++) {
+            if (texts[i].type == "text") {
+                texts[i].value = "";
+            }
+        }
+    }
+
+
+    function SetValue() {
+        if (navigator.userAgent.indexOf("MSIE") == -1) {
+            alert("粘贴只能支持IE浏览器");
+            return false;
+        }
+        document.getElementById("RValue").value = window.clipboardData.getData("Text");
+    }
+    function CalcValue(obj) {
+        var value = obj.value;
+        if (value == "") {
+            return;
+        }
+        value = value.replace('。', '').replace('.', '');
+        if (value.length != 29) {
+            alert('输入不正确！');
+            obj.value = "";
+            return;
+        }
+        var val = true;
+        for (var i = 1; i <= 9; i++) {
+            if (!(',' + value + ',').includes((',0' + i + ','))) {
+                val = false;
+                break;
+            }
+        }
+        if (!(',' + value + ',').includes(',10,')) {
+            val = false;
+        }
+        if (!val) {
+            alert('输入不正确！');
+            obj.value = "";
+            return;
+        }
+        var arry = value.split(',');
+        for (var i = 0; i < 10; i++) {
+            var index = i;
+            var result = "";
+            var nowValue = strConvertInt(arry[i]);
+            if (nowValue <= 5) {
+                for (var j = 1; j <= 4; j++) {
+                    index = i - j;
+                    if (index < 0) {
+                        result += IntConvertStr(strConvertInt(arry[10 + index]) + nowValue) + ',';
+                    }
+                    else {
+                        result += IntConvertStr(strConvertInt(arry[index]) + nowValue) + ',';
+                    }
+                }
+                document.getElementById(nowValue).value = result.substring(0, 11)
+                SortResult(document.getElementById(nowValue));
+            }
+            else {
+                for (var j = 1; j <= 4; j++) {
+                    index = i + j;
+                    if (index >= 10) {
+                        result += IntConvertStr(strConvertInt(arry[index - 10]) + nowValue) + ',';
+                    }
+                    else {
+                        result += IntConvertStr(strConvertInt(arry[index]) + nowValue) + ',';
+                    }
+                }
+                document.getElementById(nowValue).value = result.substring(0, 11)
+                SortResult(document.getElementById(nowValue));
+            }
+
+        }
+        GetPublicValue();
+    }
+
+</script>
+<script type="text/javascript">
+    function GetPublicValue() {
+        for (var i = 1; i <= 9; i++) {
+            var result = "";
+            var value1 = ',' + document.getElementById(i).value + ',';
+            var arry = document.getElementById(i + 1).value.split(',');
+            for (var j = 0; j < arry.length; j++) {
+                if (value1.indexOf(',' + arry[j] + ',') >= 0) {
+                    result += arry[j] + ',';
+                }
+            }
+            if (result.length > 0) {
+                result = result.substring(0, result.length - 1);
+            }
+            document.getElementById(i.toString() + (i + 1).toString()).value = result;
+            SortResult(document.getElementById(i.toString() + (i + 1).toString()));
+        }
+    }
+
+    function CalcSingle(obj) {
+        var id1 = obj.getAttribute("data").split(',')[0];
+        var id2 = obj.getAttribute("data").split(',')[1];
+        var value1 = document.getElementById(id1).value + ',' + document.getElementById(id2).value;
+        var value3 = document.getElementById((id1 + id2)).value;
+        var value4 = document.getElementById((id1 + '_' + id2)).value;
+        var arry = value4.split(',');
+        var result = value3;
+        for (var i = 0; (i < arry.length && result.length < 8); i++) {
+            if ((',' + value1 + ',').indexOf(',' + arry[i] + ',') >= 0 && (',' + value3 + ',').indexOf(',' + arry[i] + ',') < 0) {
+                result += ',' + arry[i];
+            }
+        }
+        if (result.substring(result.length - 1, 1) == ',') {
+            result = result.substring(0, result.length - 1);
+        }
+        document.getElementById((id1 + '__' + id2)).value = result;
+        SortResult(document.getElementById((id1 + '__' + id2)));
+    }
+</script>
+<script type="text/javascript">
+    function strConvertInt(txt) {
+        if (txt != "10") {
+            return Number(txt.replace('0', ''));
+        }
+        else {
+            return 10;
+        }
+
+    }
+    function IntConvertStr(val) {
+        if (val == "10" || val == "0") {
+            return '10'
+        }
+        else if (val > 10) {
+            return '0' + (val - 10);
+        }
+        else {
+            return '0' + val;
+        }
+
+    }
+    function ConvertValue(obj) {
+        var result = "";
+        var value = obj.value;
+        if (value.indexOf(',') <= 0) {
+            while (value.length > 0) {
+                result += IntConvertStr(value[0]) + ',';
+                value = value.substring(1, value.length);
+            }
+            result = result.substring(0, result.length - 1);
+
+        }
+        else {
+            result = value.replace('.', '').replace('。', '');
+        }
+        if (IfCorrectValue(result)) {
+            obj.value = result;
+        }
+        else {
+            alert("输入值不正确");
+        }
+    }
+
+    function IfCorrectValue(txt) {
+        if (txt.length <= 2) {
+            return true;
+        }
+        else {
+
+            while (txt.length > 0) {
+                var tem = txt.substring(0, 2);
+                txt = txt.substring(2, 3);
+                if ((',' + txt + ',').indexOf(',' + tem + ',') >= 0) {
+                    return false
+                }
+            }
+            return true;
+        }
+        return true;
+    }
+
+    function SortResult(obj) {
+        var value = obj.value;
+        var result = "";
+        var arry = value.split(',');
+        arry.sort();
+        for (var i = 0; i < arry.length; i++) {
+            result += arry[i] + ',';
+        }
+        if (result.length > 0) {
+            result = result.substring(0, result.length - 1);
+        }
+        obj.value = result;
+    }
+    function ClearSingle(id) {
+        document.getElementById(id).value = "";
+    }
+</script>
